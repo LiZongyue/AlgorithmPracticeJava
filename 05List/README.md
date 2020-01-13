@@ -192,6 +192,21 @@ class Solution {
 - 判断环的存在：使用slow n fast的双指针，开始都指向头部节点，fast的速度是slow的两倍，如果 slow 和 fast 可以相遇则说明存在环；若最后fast指向null则不存在换
 - 判断环的起点：同上，在相遇点的时刻，让一点指针指向head，另一个指针指向该点，那么当两个指针再次相遇的点就是“环的开始”。
 - 对于某些数组形式的问题，该理论同样适用。
+
+To understand this solution, you just need to ask yourself these question.
+Assume the distance from head to the start of the loop is x1
+the distance from the start of the loop to the point fast and slow meet is x2
+the distance from the point fast and slow meet to the start of the loop is x3
+What is the distance fast moved? What is the distance slow moved? And their relationship?
+
+- x1 + x2 + x3 + x2
+- x1 + x2
+- x1 + x2 + x3 + x2 = 2 (x1 + x2)
+
+
+Thus `x1 = x3`
+
+The key idea is to use fast and slow double pointers to detect whether there exists a cycle. If yes, the equation above is to find out the start of the loop.
 ##### 例题：142 Linked List Cycle II
 ```
 Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
